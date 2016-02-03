@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_columnWeight="wrap_content"
+    android:layout_rowWeight="wrap_content"
+    android:columnCount="6"
+    android:rowCount="7"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.saelmhurst.myapplication.DisplayAutoActivity"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_auto_page"
+    android:id="@+id/content"
+    android:rowOrderPreserved="false">
+
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/Drawbridge"
+        android:src="@drawable/drawbridge"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:layout_row="0"
+        android:layout_column="0" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="New Button"
+        android:id="@+id/button2"
+        android:layout_row="0"
+        android:layout_column="5" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="New Button"
+        android:id="@+id/button5"
+        android:layout_row="1"
+        android:layout_column="0" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/SallyPort"
+        android:src="@drawable/sally_port"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:layout_row="1"
+        android:layout_column="1" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="New Button"
+        android:id="@+id/button4"
+        android:layout_row="0"
+        android:layout_column="1" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/LowBar"
+        android:src="@drawable/low_bar"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:layout_row="0"
+        android:layout_column="2" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="New Button"
+        android:id="@+id/button3"
+        android:layout_row="0"
+        android:layout_column="3" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/Ramparts"
+        android:src="@drawable/ramparts"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:layout_row="0"
+        android:layout_column="4" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="New Button"
+        android:id="@+id/button6"
+        android:layout_row="1"
+        android:layout_column="2" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/Terrain"
+        android:src="@drawable/rough_terrain"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:layout_row="1"
+        android:layout_column="3" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="New Button"
+        android:id="@+id/button7"
+        android:layout_row="1"
+        android:layout_column="4" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/Moat"
+        android:src="@drawable/moat"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:layout_row="1"
+        android:layout_column="5" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="New Button"
+        android:id="@+id/button10"
+        android:layout_row="2"
+        android:layout_column="5" />
+
+    <ToggleButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/approach_def"
+        android:layout_row="3"
+        android:layout_column="0"
+        android:textOn="Made it to Defense"
+        android:textOff="Did NOT make it to Defense"/>
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/RockWall"
+        android:src="@drawable/rock_wall"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:layout_row="2"
+        android:layout_column="0" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="New Button"
+        android:id="@+id/button8"
+        android:layout_row="2"
+        android:layout_column="1" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/Portcullis"
+        android:src="@drawable/portcullis"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:layout_row="2"
+        android:layout_column="2" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="New Button"
+        android:id="@+id/button9"
+        android:layout_row="2"
+        android:layout_column="3" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/Cheval"
+        android:src="@drawable/cheval_de_frise"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:layout_row="2"
+        android:layout_column="4" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imageButton12"
+        android:src="@drawable/castle_low_goal"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:layout_column="0"
+        android:layout_row="4" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="New Button"
+        android:id="@+id/button11"
+        android:layout_row="4"
+        android:layout_column="1" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imageButton13"
+        android:src="@drawable/castle_high_goal"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:layout_row="4"
+        android:layout_column="2" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="New Button"
+        android:id="@+id/button12"
+        android:layout_row="4"
+        android:layout_column="3" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imageButton10"
+        android:src="@drawable/boulder_pick_up"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:layout_row="4"
+        android:layout_column="4" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="New Button"
+        android:id="@+id/button13"
+        android:layout_row="4"
+        android:layout_column="5" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="New Button"
+        android:id="@+id/button14"
+        android:layout_row="5"
+        android:layout_column="0" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/MissedCastle"
+        android:src="@drawable/castle_missed"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:layout_row="5"
+        android:layout_column="1" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="New Button"
+        android:id="@+id/button15"
+        android:layout_row="5"
+        android:layout_column="2" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imageButton11"
+        android:src="@drawable/boulder_put_down"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:layout_row="5"
+        android:layout_column="3" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="Next Page"
+        android:id="@+id/button16"
+        android:layout_row="6"
+        android:layout_column="5" />
+
+</GridLayout>

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="action_settings">Settings</string>
+    <string name="eventText">EditWordOrNumber</string>
+    <string name="matchText">EditWordOrNumber</string>
+    <string name="scoutText">EditWordOrNumber</string>
+    <string name="botText">EditWordOrNumber</string>
+    <string name="button_send">Send</string>
+    <string name="title_activity_display_message">DisplayMessageActivity</string>
+</resources>
