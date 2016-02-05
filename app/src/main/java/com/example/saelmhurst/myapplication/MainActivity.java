@@ -1,6 +1,7 @@
 package com.example.saelmhurst.myapplication;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -11,16 +12,20 @@ import android.view.MenuItem;
 import android.content.Intent;
 import android.widget.EditText;
 import android.widget.ToggleButton;
+import com.example.saelmhurst.myapplication.FirstScouting;
+import java.io.Serializable;
+import java.util.Calendar;
+
 
 public class MainActivity extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "com.example.saelmhurst.myapplication.MESSAGE";
     private View viewById;
-    public InfoStorage gameInfoStorage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        gameInfoStorage = new InfoStorage();
+
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -57,7 +62,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void saveInfoGoNext(View view) {
-        Intent intent = new Intent(this, AutoPageActivity.class);
+        FirstScouting.gameInfoStorage.Reset();
+
+        long startTime = Calendar.getInstance().getTimeInMillis();
         EditText eventTextEdit = (EditText) findViewById(R.id.eventText);
         String eventTextString = eventTextEdit.getText().toString();
         EditText matchTextEdit = (EditText) findViewById(R.id.matchText);
@@ -73,7 +80,9 @@ public class MainActivity extends AppCompatActivity {
         } else {
             allianceTextString = "blue";
         }
-        gameInfoStorage.setHeader(eventTextString, matchTextString, botTextString, allianceTextString, scoutTextString);
+        FirstScouting.gameInfoStorage.setHeader(eventTextString, matchTextString, botTextString, allianceTextString, scoutTextString, startTime);
+
+        Intent intent = new Intent(this, AutoPageActivity.class);
         startActivity(intent);
     }
 }

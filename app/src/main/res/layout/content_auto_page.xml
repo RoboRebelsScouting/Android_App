@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_columnWeight="wrap_content"
-    android:layout_rowWeight="wrap_content"
     android:columnCount="6"
     android:rowCount="7"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -15,288 +13,340 @@
     android:id="@+id/content"
     android:rowOrderPreserved="false">
 
-
     <ImageButton
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:onClick="onHit"
         android:id="@+id/Drawbridge"
         android:src="@drawable/drawbridge"
         android:adjustViewBounds="false"
         android:cropToPadding="false"
         android:scaleType="fitXY"
         android:layout_row="0"
-        android:layout_column="0" />
+        android:layout_column="0"
+        android:tag="Drawbridge"/>
 
-    <Button
+    <ButtononButton
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:text="New Button"
-        android:id="@+id/button2"
+        android:onClick="onButton"
+        android:text="Ramparts: 0"
+        android:id="@+id/Ramparts0"
         android:layout_row="0"
-        android:layout_column="5" />
-
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:text="New Button"
-        android:id="@+id/button5"
-        android:layout_row="1"
-        android:layout_column="0" />
+        android:layout_column="5"
+        android:tag="Ramparts"/>
 
     <ImageButton
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:onClick="onHit"
         android:id="@+id/SallyPort"
         android:src="@drawable/sally_port"
         android:adjustViewBounds="false"
         android:cropToPadding="false"
         android:scaleType="fitXY"
         android:layout_row="1"
-        android:layout_column="1" />
+        android:layout_column="0"
+        android:tag="SallyPort"/>
 
     <Button
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:text="New Button"
-        android:id="@+id/button4"
+        android:onClick="onButton"
+        android:text="Draw Bridge: 0"
+        android:id="@+id/Drawbridge0"
         android:layout_row="0"
-        android:layout_column="1" />
+        android:layout_column="1"
+        android:tag="Drawbridge"/>
 
     <ImageButton
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:onClick="onHit"
         android:id="@+id/LowBar"
         android:src="@drawable/low_bar"
         android:adjustViewBounds="false"
         android:cropToPadding="false"
         android:scaleType="fitXY"
         android:layout_row="0"
-        android:layout_column="2" />
+        android:layout_column="2"
+        android:tag="LowBar"/>
 
     <Button
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:text="New Button"
-        android:id="@+id/button3"
+        android:onClick="onButton"
+        android:text="Low Bar: 0"
+        android:id="@+id/LowBar0"
         android:layout_row="0"
-        android:layout_column="3" />
+        android:layout_column="3"
+        android:tag="LowBar"/>
+
 
     <ImageButton
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:onClick="onHit"
         android:id="@+id/Ramparts"
         android:src="@drawable/ramparts"
         android:adjustViewBounds="false"
         android:cropToPadding="false"
         android:scaleType="fitXY"
         android:layout_row="0"
-        android:layout_column="4" />
+        android:layout_column="4"
+        android:tag="Ramparts"/>
 
     <Button
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:text="New Button"
-        android:id="@+id/button6"
+        android:onClick="onButton"
+        android:text="Sally Port: 0"
+        android:id="@+id/SallyPort0"
         android:layout_row="1"
-        android:layout_column="2" />
+        android:layout_column="1"
+        android:tag="SallyPort"/>
 
     <ImageButton
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:onClick="onHit"
         android:id="@+id/Terrain"
         android:src="@drawable/rough_terrain"
         android:adjustViewBounds="false"
         android:cropToPadding="false"
         android:scaleType="fitXY"
         android:layout_row="1"
-        android:layout_column="3" />
+        android:layout_column="2"
+        android:tag="Terrain"/>
 
     <Button
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:text="New Button"
-        android:id="@+id/button7"
+        android:onClick="onButton"
+        android:text="Terrian: 0"
+        android:id="@+id/Terrain0"
         android:layout_row="1"
-        android:layout_column="4" />
+        android:layout_column="3"
+        android:tag="Terrain"/>
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:onClick="onButton"
+        android:text="Cheval: 0"
+        android:id="@+id/Cheval0"
+        android:layout_row="2"
+        android:layout_column="5"
+        android:tag="Cheval"/>
 
     <ImageButton
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:onClick="onHit"
         android:id="@+id/Moat"
         android:src="@drawable/moat"
         android:adjustViewBounds="false"
         android:cropToPadding="false"
         android:scaleType="fitXY"
         android:layout_row="1"
-        android:layout_column="5" />
+        android:layout_column="4"
+        android:tag="Moat"/>
 
     <Button
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:text="New Button"
-        android:id="@+id/button10"
-        android:layout_row="2"
-        android:layout_column="5" />
-
-    <ToggleButton
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/approach_def"
-        android:layout_row="3"
-        android:layout_column="0"
-        android:textOn="Made it to Defense"
-        android:textOff="Did NOT make it to Defense"/>
+        android:onClick="onButton"
+        android:text="Moat: 0"
+        android:id="@+id/Moat0"
+        android:layout_row="1"
+        android:layout_column="5"
+        android:tag="Moat"/>
 
     <ImageButton
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:onClick="onHit"
         android:id="@+id/RockWall"
         android:src="@drawable/rock_wall"
         android:adjustViewBounds="false"
         android:cropToPadding="false"
         android:scaleType="fitXY"
         android:layout_row="2"
-        android:layout_column="0" />
+        android:layout_column="0"
+        android:tag="RockWall"/>
 
     <Button
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:text="New Button"
-        android:id="@+id/button8"
+        android:onClick="onButton"
+        android:text="Rock Wall: 0"
+        android:id="@+id/RockWall0"
         android:layout_row="2"
-        android:layout_column="1" />
+        android:layout_column="1"
+        android:tag="RockWall"/>
 
     <ImageButton
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:onClick="onHit"
         android:id="@+id/Portcullis"
         android:src="@drawable/portcullis"
         android:adjustViewBounds="false"
         android:cropToPadding="false"
         android:scaleType="fitXY"
         android:layout_row="2"
-        android:layout_column="2" />
+        android:layout_column="2"
+        android:tag="Portcullis"/>
 
     <Button
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:text="New Button"
-        android:id="@+id/button9"
+        android:onClick="onButton"
+        android:text="Gate: 0"
+        android:id="@+id/Portcullis0"
         android:layout_row="2"
         android:layout_column="3" />
 
     <ImageButton
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:onClick="onHit"
         android:id="@+id/Cheval"
         android:src="@drawable/cheval_de_frise"
         android:adjustViewBounds="false"
         android:cropToPadding="false"
         android:scaleType="fitXY"
         android:layout_row="2"
-        android:layout_column="4" />
+        android:layout_column="4"
+        android:tag="Cheval"/>
+
+    <ToggleButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/approach_def"
+        android:layout_row="3"
+        android:layout_column="1"
+        android:textOn="Made it to Defense"
+        android:textOff="Did NOT make it to Defense"/>
 
     <ImageButton
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:id="@+id/imageButton12"
+        android:onClick="onHit"
+        android:id="@+id/CastleLow"
         android:src="@drawable/castle_low_goal"
         android:adjustViewBounds="false"
         android:cropToPadding="false"
         android:scaleType="fitXY"
         android:layout_column="0"
-        android:layout_row="4" />
+        android:layout_row="4"
+        android:tag="ScoreLow"/>
 
     <Button
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:text="New Button"
-        android:id="@+id/button11"
+        android:onClick="onButton"
+        android:text="Low Goals: 0"
+        android:id="@+id/ScoreLow0"
         android:layout_row="4"
         android:layout_column="1" />
 
     <ImageButton
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:id="@+id/imageButton13"
+        android:onClick="onHit"
+        android:id="@+id/CastleHigh"
         android:src="@drawable/castle_high_goal"
         android:adjustViewBounds="false"
         android:cropToPadding="false"
         android:scaleType="fitXY"
         android:layout_row="4"
-        android:layout_column="2" />
+        android:layout_column="2"
+        android:tag="ScoreHigh"/>
 
     <Button
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:text="New Button"
-        android:id="@+id/button12"
+        android:onClick="onButton"
+        android:text="High Goals: 0"
+        android:id="@+id/ScoreHigh0"
         android:layout_row="4"
         android:layout_column="3" />
 
     <ImageButton
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:id="@+id/imageButton10"
+        android:onClick="onHit"
+        android:id="@+id/PickUpBoulder"
         android:src="@drawable/boulder_pick_up"
         android:adjustViewBounds="false"
         android:cropToPadding="false"
         android:scaleType="fitXY"
         android:layout_row="4"
-        android:layout_column="4" />
+        android:layout_column="4"
+        android:tag="PickUpBall"/>
 
     <Button
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:text="New Button"
-        android:id="@+id/button13"
+        android:onClick="onButton"
+        android:text="Balls Collected: 0"
+        android:id="@+id/PickUpBall0"
         android:layout_row="4"
         android:layout_column="5" />
-
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:text="New Button"
-        android:id="@+id/button14"
-        android:layout_row="5"
-        android:layout_column="0" />
 
     <ImageButton
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:onClick="onHit"
         android:id="@+id/MissedCastle"
         android:src="@drawable/castle_missed"
         android:adjustViewBounds="false"
         android:cropToPadding="false"
         android:scaleType="fitXY"
         android:layout_row="5"
-        android:layout_column="1" />
+        android:layout_column="0"
+        android:tag="MissShot"/>
 
     <Button
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:text="New Button"
-        android:id="@+id/button15"
+        android:onClick="onButton"
+        android:text="Missed Shots: 0"
+        android:id="@+id/MissShot0"
         android:layout_row="5"
-        android:layout_column="2" />
+        android:layout_column="1" />
 
     <ImageButton
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:id="@+id/imageButton11"
+        android:onClick="onHit"
+
+        android:id="@+id/PutDownBoulder"
         android:src="@drawable/boulder_put_down"
         android:adjustViewBounds="false"
         android:cropToPadding="false"
         android:scaleType="fitXY"
         android:layout_row="5"
-        android:layout_column="3" />
+        android:layout_column="4"
+        android:tag="DropBall"/>
 
     <Button
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:text="Next Page"
-        android:id="@+id/button16"
-        android:layout_row="6"
+        android:onClick="onButton"
+        android:text="Balls Dropped: 0"
+        android:id="@+id/DropBall0"
+        android:layout_row="5"
         android:layout_column="5" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:onClick="onButton"
+        android:text="Next Page"
+        android:id="@+id/NextPage"
+        android:layout_row="6"
+        android:layout_column="3" />
 
 </GridLayout>
