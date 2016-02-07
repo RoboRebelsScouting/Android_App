@@ -1,4 +1,12 @@
 package com.example.saelmhurst.myapplication;
+import android.os.Environment;
+import android.util.Log;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.io.Serializable;
@@ -158,18 +166,48 @@ public class InfoStorage implements Serializable
     {
         infoHeader.Reset();
         robotEventArray.clear();
-        index = 0;
+        //index = 0;
 
     }
     void setHeader (String strEvent, String strMatch, String strBot, String strAlliance, String strScout, long longStartTime) {
-        infoHeader.setInfoHeader(strEvent, strMatch, strBot, strAlliance, strScout, longStartTime );
+        infoHeader.setInfoHeader(strEvent, strMatch, strBot, strAlliance, strScout, longStartTime);
     }
     void AddAction(enumBotAction eAction)
     {
         RobotEvent oAction = new RobotEvent();
         oAction.setBotAction(eAction);
 
-        robotEventArray.add(index, oAction);
-        ++index;
+        //robotEventArray.add(index, oAction);
+        robotEventArray.add(oAction);
+        //++index;
+    }
+    public boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        if(Environment.MEDIA_MOUNTED.equals(state)) {
+            return true;
+        }
+        return false;
+    }
+    public File getAlbumStorageDir(String albumName) {
+        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), albumName);
+        if (!file.mkdirs()) {
+            Log.e("ERROR", "Directory NOT Created");
+        }
+        return file;
+    }
+    void csvCreate() {
+        String fileName= infoHeader.eventNameInfo + "-" + infoHeader.matchNumberInfo + "-" + infoHeader.allianceColorInfo + "-" + infoHeader.botNumberInfo + ".csv";
+        File directory = getAlbumStorageDir("/FRC2016");
+        File file = new File(directory,fileName);
+        try {
+            FileWriter writer = new FileWriter(file);
+            for (int c = 0; c < robotEventArray.size(); c++) {
+                String output = robotEventArray.get(c).robotActionTime + "," + robotEventArray.get(c).eBotAction.toString();
+                writer.write(output + "\n");
+            }
+            writer.close();
+        } catch (IOException e) {
+            Log.e("ERROR","File NOT Created",e);
+        }
     }
 }

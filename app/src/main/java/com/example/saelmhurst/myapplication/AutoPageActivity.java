@@ -44,6 +44,26 @@ public class AutoPageActivity extends AppCompatActivity {
 
     public void onButton(View view) {
 
+        Button btn = (Button) view;
+        String strTag = btn.getTag().toString();
+        enumBotAction actionToBeRemoved = enumBotAction.valueOf(strTag);
+        Boolean removed = false;
+        if (FirstScouting.gameInfoStorage.robotEventArray.size() > 0) {
+            for (int a = FirstScouting.gameInfoStorage.robotEventArray.size() - 1; a >= 0; a = a - 1) {
+                if (FirstScouting.gameInfoStorage.robotEventArray.get(a).eBotAction.equals(actionToBeRemoved)) {
+                    if (removed == false) {
+                        FirstScouting.gameInfoStorage.robotEventArray.remove(a);
+                        removed = true;
+
+                        String buttonText = btn.getText().toString();
+                        String[] array = buttonText.split(":");
+                        int crossed = Integer.parseInt(array[1].trim());
+                        crossed = crossed - 1;
+                        btn.setText(array[0] + ": " + crossed);
+                    }
+                }
+            }
+        }
     }
 
     public void onHit(View view) {
@@ -62,5 +82,9 @@ public class AutoPageActivity extends AppCompatActivity {
         crossed++;
         button.setText(array[0] + ": " + crossed);
 
+    }
+
+    public void goTeleop(View view) {
+        FirstScouting.gameInfoStorage.csvCreate();
     }
 }

@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void saveInfoGoNext(View view) {
-        FirstScouting.gameInfoStorage.Reset();
+        //FirstScouting.gameInfoStorage.Reset();
 
         long startTime = Calendar.getInstance().getTimeInMillis();
         EditText eventTextEdit = (EditText) findViewById(R.id.eventText);
