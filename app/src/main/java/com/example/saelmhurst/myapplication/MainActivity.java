@@ -23,10 +23,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -34,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Snackbar.make(view, "Home", Snackbar.LENGTH_LONG)
+                        .setAction("", null).show();
             }
         });
     }
@@ -81,8 +80,7 @@ public class MainActivity extends AppCompatActivity {
             allianceTextString = "blue";
         }
         FirstScouting.gameInfoStorage.setHeader(eventTextString, matchTextString, botTextString, allianceTextString, scoutTextString, startTime);
-
-        Intent intent = new Intent(this, AutoPageActivity.class);
+        Intent intent = new Intent(this, DefenseSelection.class);
         startActivity(intent);
     }
 }

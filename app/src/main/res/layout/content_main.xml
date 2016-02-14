@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,102 +8,134 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_main">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/scoutText"
-        android:hint="Enter Scout Name"
-        android:layout_weight="1"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/eventText"
-        android:hint="Enter Event Name"
-        android:layout_below="@+id/scoutText"
-        android:layout_alignStart="@+id/scoutText" />
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/matchText"
-        android:hint="Enter Match #"
-        android:layout_below="@+id/eventText"
-        android:layout_alignStart="@+id/eventText" />
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/botText"
-        android:hint="Enter Robot #"
-        android:layout_below="@+id/matchText"
-        android:layout_alignStart="@+id/matchText" />
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Begin"
-        android:id="@+id/button"
-        android:layout_weight="1"
-        android:layout_gravity="center"
-        android:onClick="saveInfoGoNext"
-        android:layout_marginBottom="152dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/scoutText" />
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Scout: "
+            android:id="@+id/scoutLabel"
+            android:layout_column="0" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Scout: "
-        android:id="@+id/scoutLabel"
-        android:layout_alignBottom="@+id/scoutText"
-        android:layout_toStartOf="@+id/scoutText" />
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:id="@+id/scoutText"
+            android:hint="Enter Scout Name"
+            android:layout_column="1" />
+    </TableRow>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Event: "
-        android:id="@+id/eventLabel"
-        android:layout_alignBottom="@+id/eventText"
-        android:layout_toStartOf="@+id/eventText" />
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Match#: "
-        android:id="@+id/matchLabel"
-        android:layout_alignBottom="@+id/matchText"
-        android:layout_toStartOf="@+id/matchText" />
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Event: "
+            android:id="@+id/eventLabel"
+            android:layout_column="0" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Robot#: "
-        android:id="@+id/botLabel"
-        android:layout_alignBottom="@+id/botText"
-        android:layout_toStartOf="@+id/botText" />
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:id="@+id/eventText"
+            android:hint="Enter Event Name"
+            android:layout_column="1" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Alliance: "
-        android:id="@+id/allianceLabel"
-        android:layout_alignBottom="@+id/allianceToggle"
-        android:layout_toStartOf="@+id/allianceToggle" />
+    </TableRow>
 
-    <ToggleButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Alliance"
-        android:id="@+id/allianceToggle"
-        android:textOff="Blue"
-        android:textOn="Red"
-        android:layout_below="@+id/botText"
-        android:layout_alignStart="@+id/botText" />
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Robot#: "
+            android:id="@+id/botLabel"
+            android:layout_column="0" />
 
-</RelativeLayout>
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:id="@+id/botText"
+            android:hint="Enter Robot #"
+            android:layout_column="1" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Match#: "
+            android:id="@+id/matchLabel"
+            android:layout_column="0" />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:id="@+id/matchText"
+            android:hint="Enter Match #"
+            android:layout_column="1" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Alliance: "
+            android:id="@+id/allianceLabel"
+            android:layout_column="0" />
+
+        <ToggleButton
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:text="Alliance"
+            android:id="@+id/allianceToggle"
+            android:textOff="Blue"
+            android:textOn="Red"
+            android:layout_column="1" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/textView"
+            android:layout_column="0" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:text="Begin"
+            android:id="@+id/button"
+            android:onClick="saveInfoGoNext"
+            android:layout_column="1" />
+    </TableRow>
+
+</TableLayout>

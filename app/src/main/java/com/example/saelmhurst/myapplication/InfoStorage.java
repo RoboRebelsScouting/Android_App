@@ -12,48 +12,46 @@ import java.util.Calendar;
 import java.io.Serializable;
 import java.util.Hashtable;
 
-/**
+/*
  * Created by saelmhurst on 1/29/16.
  */
+    enum enumBotActionData {
+        None,
+        Cross,
+        Reach,
+        Attempt,
+        Fail,
+        Succeed,
+        PickUp,
+        Drop,
+        Miss,
+        Score,
+        Passage,
+        Pinning,
+        Defensive,
+        Other
+    }
     enum enumBotAction {
+        Challenge,
         NoEvent,
-        PickUpBall,
-        DropBall,
-        MissShot,
+        Ball,
         Drive,
         Climb,
         Penalty,
         TechFoul,
-        SpyBot,
-        //Reach = 12
-        ReachDef,
-        FailDef,
+        EnterTeleop,
+        ShootLow,
+        ShootHigh,
+        EnterAuto,
         Portcullis,
-        ScoreLow,
-        ScoreHigh,
         Cheval,
         Moat,
         Drawbridge,
         SallyPort,
         RockWall,
-        Terrain,
+        RoughTerrain,
         LowBar,
-        Ramparts,
-        //AutoReachDef = 23
-        AutoReachDef,
-        AutoFailDef,
-        AutoScoreHigh,
-        AutoScoreLow,
-        Challenge,
-        AutoPortcullis,
-        AutoCheval,
-        AutoMoat,
-        AutoDrawbridge,
-        AutoSallyPort,
-        AutoRockWall,
-        AutoTerrain,
-        AutoLowBar,
-        AutoRamparts
+        Ramparts
     }
 
 
@@ -92,8 +90,10 @@ class InfoHeader {
 
 class RobotEvent {
     enumBotAction eBotAction;
+    enumBotActionData eBotActionData;
     long robotActionTime;
     RobotEvent() {
+        eBotActionData = enumBotActionData.None;
         eBotAction = enumBotAction.NoEvent;
         robotActionTime = 0;
     }
@@ -110,6 +110,12 @@ public class InfoStorage implements Serializable
 {
     public InfoHeader infoHeader = new InfoHeader();
     public ArrayList <RobotEvent> robotEventArray = new ArrayList<RobotEvent>();
+    public enumBotAction defenseA = null;
+    public enumBotAction defenseB = null;
+    public enumBotAction defenseC = null;
+    public enumBotAction defenseD = null;
+
+    public enumBotAction[] defenses = new enumBotAction[4];
 
     Hashtable<enumBotAction, String> ht_BotActions = new Hashtable<>();
 
@@ -119,20 +125,14 @@ public class InfoStorage implements Serializable
     InfoStorage() {
 
         Reset();
-
+    /*
         ht_BotActions.put(enumBotAction.NoEvent, "NOEVENT");
-        ht_BotActions.put(enumBotAction.PickUpBall, "PKUPBALL");
-        ht_BotActions.put(enumBotAction.DropBall, "DROPBALL");
-        ht_BotActions.put(enumBotAction.MissShot, "MISSSHOT");
         ht_BotActions.put(enumBotAction.Drive, "DRIVE");
-        ht_BotActions.put(enumBotAction.ReachDef, "RECHDEF");
-        ht_BotActions.put(enumBotAction.FailDef, "FAILDEF");
         ht_BotActions.put(enumBotAction.Climb, "CLIMB");
         ht_BotActions.put(enumBotAction.ScoreLow, "SCRLOW");
         ht_BotActions.put(enumBotAction.ScoreHigh, "SCRHIGH");
         ht_BotActions.put(enumBotAction.Penalty, "PENALTY");
         ht_BotActions.put(enumBotAction.TechFoul, "TECHFOUL");
-        ht_BotActions.put(enumBotAction.SpyBot, "SPYBOT");
 
         ht_BotActions.put(enumBotAction.Portcullis, "PRTCULS");
         ht_BotActions.put(enumBotAction.Cheval, "CHDEFRS");
@@ -157,10 +157,11 @@ public class InfoStorage implements Serializable
         ht_BotActions.put(enumBotAction.AutoReachDef, "AUTRDEF");
         ht_BotActions.put(enumBotAction.AutoScoreHigh, "AUTSCRH");
         ht_BotActions.put(enumBotAction.AutoScoreLow, "AUTSCRL");
+
         ht_BotActions.put(enumBotAction.Challenge, "CHALNGE");
+    */
 
     }
-
 
     void Reset()
     {
@@ -201,8 +202,32 @@ public class InfoStorage implements Serializable
         File file = new File(directory,fileName);
         try {
             FileWriter writer = new FileWriter(file);
+            String lineOne = infoHeader.eventNameInfo + "," +
+                    infoHeader.matchNumberInfo + "," +
+                    infoHeader.allianceColorInfo + "," +
+                    infoHeader.botNumberInfo + "," +
+                    infoHeader.scoutNameInfo;
+            writer.write(lineOne + "\n");
             for (int c = 0; c < robotEventArray.size(); c++) {
-                String output = robotEventArray.get(c).robotActionTime + "," + robotEventArray.get(c).eBotAction.toString();
+                String output;
+                if ((robotEventArray.get(c).eBotAction.equals(enumBotAction.Drawbridge))
+                        || (robotEventArray.get(c).equals(enumBotAction.Cheval))
+                        || (robotEventArray.get(c).equals(enumBotAction.Ramparts))
+                        || (robotEventArray.get(c).equals(enumBotAction.LowBar))
+                        || (robotEventArray.get(c).equals(enumBotAction.RoughTerrain))
+                        || (robotEventArray.get(c).equals(enumBotAction.RockWall))
+                        || (robotEventArray.get(c).equals(enumBotAction.Moat))
+                        || (robotEventArray.get(c).equals(enumBotAction.SallyPort))
+                        || (robotEventArray.get(c).equals(equals(enumBotAction.Portcullis)))){
+                    output = robotEventArray.get(c).robotActionTime + "," +
+                            "Defense," +
+                            robotEventArray.get(c).eBotAction.toString() + "," +
+                            robotEventArray.get(c).eBotActionData;
+                } else {
+                    output =  robotEventArray.get(c).robotActionTime + "," +
+                            robotEventArray.get(c).eBotAction.toString() + "," +
+                            robotEventArray.get(c).eBotActionData;
+                }
                 writer.write(output + "\n");
             }
             writer.close();

@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.saelmhurst.myapplication">
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".FirstScouting"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="RoboRebels Scouting"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
+            android:label="RoboRebels Scouting"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,22 +23,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DisplayMessageActivity"
-            android:label="@string/title_activity_display_message"
+            android:name=".AutoPageActivity"
+            android:label="Robot Actions"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.saelmhurst.myapplication.MainActivity" />
         </activity>
-        <activity android:name=".AutoPageActivity"
-            android:label="AutoPageActivity"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.saelmhurst.myapplication.MainActivity" />
-        </activity>
+        <activity
+            android:name=".DefenseSelection"
+            android:label="Select Defenses"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".CaptureActivity"></activity>
     </application>
 
 </manifest>
