@@ -15,7 +15,7 @@ public class FirstScouting extends Application {
         return singleton;
     }
     @Override
-    public void onCreate(){
+    public void onCreate() {
         super.onCreate();
         singleton = this;
     }

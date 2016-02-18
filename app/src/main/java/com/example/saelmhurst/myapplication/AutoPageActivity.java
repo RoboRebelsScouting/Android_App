@@ -1,6 +1,7 @@
 package com.example.saelmhurst.myapplication;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.media.Image;
 import android.os.Bundle;
@@ -40,7 +41,7 @@ public class AutoPageActivity extends AppCompatActivity {
             dFence.setImageResource(defenseResID);
             crossNumber.setTag(tagString + ":Cross");
             failNumber.setTag(tagString + ":Fail");
-            attempt.setTag(tagString+":Attempt");
+            attempt.setTag(tagString+":Approach");
 
         } else if (defenseNum == 1) {
             ImageButton dFence = (ImageButton) findViewById(R.id.dFenceB);
@@ -50,7 +51,7 @@ public class AutoPageActivity extends AppCompatActivity {
             dFence.setImageResource(defenseResID);
             crossNumber.setTag(tagString + ":Cross");
             failNumber.setTag(tagString + ":Fail");
-            attempt.setTag(tagString+":Attempt");
+            attempt.setTag(tagString+":Approach");
 
         } else if (defenseNum == 2) {
             ImageButton dFence = (ImageButton) findViewById(R.id.dFenceC);
@@ -60,7 +61,7 @@ public class AutoPageActivity extends AppCompatActivity {
             dFence.setImageResource(defenseResID);
             crossNumber.setTag(tagString + ":Cross");
             failNumber.setTag(tagString + ":Fail");
-            attempt.setTag(tagString+":Attempt");
+            attempt.setTag(tagString+":Approach");
 
         } else {
             ImageButton dFence = (ImageButton) findViewById(R.id.dFenceD);
@@ -70,7 +71,7 @@ public class AutoPageActivity extends AppCompatActivity {
             dFence.setImageResource(defenseResID);
             crossNumber.setTag(tagString + ":Cross");
             failNumber.setTag(tagString + ":Fail");
-            attempt.setTag(tagString+":Attempt");
+            attempt.setTag(tagString+":Approach");
 
         }
     }
@@ -104,7 +105,7 @@ public class AutoPageActivity extends AppCompatActivity {
         String strTag = view.getTag().toString();
         String[] arrayTags = strTag.split(":");
 
-        if (arrayTags[1].equalsIgnoreCase("Attempt")) {
+        if (arrayTags[1].equalsIgnoreCase("Approach")) {
             btn = (ToggleButton) view;
         } else {
             btn = (Button) view;
@@ -120,7 +121,7 @@ public class AutoPageActivity extends AppCompatActivity {
                         if (!removed) {
                             FirstScouting.gameInfoStorage.robotEventArray.remove(a);
                             removed = true;
-                            if (arrayTags[1].equalsIgnoreCase("Attempt") == false) {
+                            if (arrayTags[1].equalsIgnoreCase("Approach") == false) {
                                 Button button = (Button) btn;
                                 String buttonText = button.getText().toString();
                                 String[] array = buttonText.split(":");
@@ -137,11 +138,16 @@ public class AutoPageActivity extends AppCompatActivity {
 
     public void onToggleDef(View view) {
         ToggleButton tView = (ToggleButton)view;
-        if (tView.isChecked() == true) {
-
+        if (tView.isChecked()) {
             onDefenseHit(view);
+            ColorStateList red = tView.getTextColors();
+            tView.setTextColor(tView.getHintTextColors());
+            tView.setHintTextColor(red);
         } else {
             onButton(view);
+            ColorStateList green = tView.getTextColors();
+            tView.setTextColor(tView.getHintTextColors());
+            tView.setHintTextColor(green);
         }
     }
 
@@ -177,7 +183,7 @@ public class AutoPageActivity extends AppCompatActivity {
             enumBotAction eAction = enumBotAction.NoEvent;
             enumBotActionData eActionData = enumBotActionData.None;
             // for A defense - get defense in defenses[0]
-            if (!strTagArray[1].equals("Attempt")) {
+            if (!strTagArray[1].equals("Approach")) {
                 if (strTagArray[1].equals("A")) {
                     eAction = FirstScouting.gameInfoStorage.defenses[0];
                 } else if (strTagArray[1].equals("B")) {
@@ -191,7 +197,7 @@ public class AutoPageActivity extends AppCompatActivity {
                 }
                 eActionData = enumBotActionData.valueOf(strTagArray[0]);
             } else {
-                eActionData = enumBotActionData.Attempt;
+                eActionData = enumBotActionData.Approach;
                 eAction = enumBotAction.valueOf(strTagArray[0]);
             }
 
@@ -204,7 +210,7 @@ public class AutoPageActivity extends AppCompatActivity {
             FirstScouting.gameInfoStorage.robotEventArray.add(rEvent);
 
             // update text button
-            if (eActionData != enumBotActionData.Attempt) {
+            if (eActionData != enumBotActionData.Approach) {
                 Resources resources = getResources();
                 String resourceString = strTagArray[0].toLowerCase() + strTagArray[1] + "Number";
                 int id = resources.getIdentifier(resourceString, "id", getApplicationContext().getPackageName());
@@ -220,13 +226,36 @@ public class AutoPageActivity extends AppCompatActivity {
 
     public void goTeleopOrCapture(View view) {
         ToggleButton toggle = (ToggleButton) view;
+        TextView mode = (TextView) findViewById(R.id.mode);
+        ToggleButton approachA = (ToggleButton) findViewById(R.id.AttemptedA);
+        ToggleButton approachB = (ToggleButton) findViewById(R.id.AttemptedB);
+        ToggleButton approachC = (ToggleButton) findViewById(R.id.AttemptedC);
+        ToggleButton approachD = (ToggleButton) findViewById(R.id.AttemptedD);
+        ToggleButton approachE = (ToggleButton) findViewById(R.id.AttemptedLowBar);
+
         if (toggle.isChecked()) {
+            mode.setText("Teleop");
             RobotEvent rEvent = new RobotEvent();
             rEvent.robotActionTime = System.currentTimeMillis();
             rEvent.eBotAction = enumBotAction.EnterTeleop;
             rEvent.eBotActionData = enumBotActionData.None;
             FirstScouting.gameInfoStorage.robotEventArray.add(rEvent);
+
+
+            approachA.setVisibility(View.INVISIBLE);
+            approachB.setVisibility(View.INVISIBLE);
+            approachC.setVisibility(View.INVISIBLE);
+            approachD.setVisibility(View.INVISIBLE);
+            approachE.setVisibility(View.INVISIBLE);
+
+
         } else {
+            mode.setText("Autonomous");
+            approachA.setVisibility(View.VISIBLE);
+            approachB.setVisibility(View.VISIBLE);
+            approachC.setVisibility(View.VISIBLE);
+            approachD.setVisibility(View.VISIBLE);
+            approachE.setVisibility(View.VISIBLE);
             Intent intent = new Intent(this, CaptureActivity.class);
             startActivity(intent);
         }

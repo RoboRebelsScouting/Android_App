@@ -62,6 +62,7 @@
             android:layout_column="0" />
 
         <EditText
+            android:inputType="number"
             android:layout_width="200dp"
             android:layout_height="100dp"
             android:id="@+id/botText"
@@ -110,7 +111,8 @@
             android:id="@+id/allianceToggle"
             android:textOff="Blue"
             android:textOn="Red"
-            android:layout_column="1" />
+            android:layout_column="1"
+            android:onClick="onAllianceToggle"/>
     </TableRow>
 
     <TableRow

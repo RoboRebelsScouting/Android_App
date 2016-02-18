@@ -7,9 +7,12 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Hashtable;
 
 /*
@@ -19,7 +22,7 @@ import java.util.Hashtable;
         None,
         Cross,
         Reach,
-        Attempt,
+        Approach,
         Fail,
         Succeed,
         PickUp,
@@ -62,6 +65,7 @@ class InfoHeader {
     String botNumberInfo;
     String allianceColorInfo;
     String scoutNameInfo;
+    String allianceTotalScore;
     long startTime;
     InfoHeader() {
         Reset();
@@ -125,41 +129,6 @@ public class InfoStorage implements Serializable
     InfoStorage() {
 
         Reset();
-    /*
-        ht_BotActions.put(enumBotAction.NoEvent, "NOEVENT");
-        ht_BotActions.put(enumBotAction.Drive, "DRIVE");
-        ht_BotActions.put(enumBotAction.Climb, "CLIMB");
-        ht_BotActions.put(enumBotAction.ScoreLow, "SCRLOW");
-        ht_BotActions.put(enumBotAction.ScoreHigh, "SCRHIGH");
-        ht_BotActions.put(enumBotAction.Penalty, "PENALTY");
-        ht_BotActions.put(enumBotAction.TechFoul, "TECHFOUL");
-
-        ht_BotActions.put(enumBotAction.Portcullis, "PRTCULS");
-        ht_BotActions.put(enumBotAction.Cheval, "CHDEFRS");
-        ht_BotActions.put(enumBotAction.Moat, "MOAT");
-        ht_BotActions.put(enumBotAction.Drawbridge, "DRWBRG");
-        ht_BotActions.put(enumBotAction.SallyPort, "SALPRT");
-        ht_BotActions.put(enumBotAction.RockWall, "RCKWAL");
-        ht_BotActions.put(enumBotAction.Terrain, "TERRN");
-        ht_BotActions.put(enumBotAction.LowBar, "LOWBAR");
-        ht_BotActions.put(enumBotAction.Ramparts, "RAMPAR");
-
-        ht_BotActions.put(enumBotAction.AutoPortcullis, "APRTCUL");
-        ht_BotActions.put(enumBotAction.AutoCheval, "ACHVDFR");
-        ht_BotActions.put(enumBotAction.AutoMoat, "AUTMOT");
-        ht_BotActions.put(enumBotAction.AutoDrawbridge, "AUTDRB");
-        ht_BotActions.put(enumBotAction.AutoSallyPort, "AUTSPRT");
-        ht_BotActions.put(enumBotAction.AutoRockWall, "AUTRWAL");
-        ht_BotActions.put(enumBotAction.AutoTerrain, "AUTTERN");
-        ht_BotActions.put(enumBotAction.AutoLowBar, "AUTLWBR");
-        ht_BotActions.put(enumBotAction.AutoRamparts, "AUTRAM");
-
-        ht_BotActions.put(enumBotAction.AutoReachDef, "AUTRDEF");
-        ht_BotActions.put(enumBotAction.AutoScoreHigh, "AUTSCRH");
-        ht_BotActions.put(enumBotAction.AutoScoreLow, "AUTSCRL");
-
-        ht_BotActions.put(enumBotAction.Challenge, "CHALNGE");
-    */
 
     }
 
@@ -197,7 +166,12 @@ public class InfoStorage implements Serializable
         return file;
     }
     void csvCreate() {
-        String fileName= infoHeader.eventNameInfo + "-" + infoHeader.matchNumberInfo + "-" + infoHeader.allianceColorInfo + "-" + infoHeader.botNumberInfo + ".csv";
+        String fileName= infoHeader.eventNameInfo + "-" +
+                infoHeader.matchNumberInfo + "-" +
+                infoHeader.allianceColorInfo + "-" +
+                infoHeader.botNumberInfo + "-" +
+                ".csv";
+
         File directory = getAlbumStorageDir("/FRC2016");
         File file = new File(directory,fileName);
         try {
@@ -206,10 +180,13 @@ public class InfoStorage implements Serializable
                     infoHeader.matchNumberInfo + "," +
                     infoHeader.allianceColorInfo + "," +
                     infoHeader.botNumberInfo + "," +
-                    infoHeader.scoutNameInfo;
+                    infoHeader.scoutNameInfo + "," +
+                    infoHeader.allianceTotalScore;
             writer.write(lineOne + "\n");
             for (int c = 0; c < robotEventArray.size(); c++) {
-                String output;
+                String output = "";
+                Format format = new SimpleDateFormat("yyyy-MM-dd-HH:mm;ss");
+
                 if ((robotEventArray.get(c).eBotAction.equals(enumBotAction.Drawbridge))
                         || (robotEventArray.get(c).equals(enumBotAction.Cheval))
                         || (robotEventArray.get(c).equals(enumBotAction.Ramparts))
@@ -219,15 +196,32 @@ public class InfoStorage implements Serializable
                         || (robotEventArray.get(c).equals(enumBotAction.Moat))
                         || (robotEventArray.get(c).equals(enumBotAction.SallyPort))
                         || (robotEventArray.get(c).equals(equals(enumBotAction.Portcullis)))){
-                    output = robotEventArray.get(c).robotActionTime + "," +
+
+                    Date date = new Date(robotEventArray.get(c).robotActionTime);
+
+                    output = format.format(date) + "," +
                             "Defense," +
                             robotEventArray.get(c).eBotAction.toString() + "," +
                             robotEventArray.get(c).eBotActionData;
-                } else {
-                    output =  robotEventArray.get(c).robotActionTime + "," +
+
+                } else if (robotEventArray.get(c).equals(enumBotAction.Penalty)) {
+
+                    Date date = new Date(Calendar.getInstance().getTimeInMillis());
+
+                    output =  format.format(date) + "," +
+                            robotEventArray.get(c).robotActionTime + "," +
                             robotEventArray.get(c).eBotAction.toString() + "," +
                             robotEventArray.get(c).eBotActionData;
+
+                } else {
+                    Date date = new Date(robotEventArray.get(c).robotActionTime);
+
+                    output = format.format(date) + "," +
+                            robotEventArray.get(c).eBotAction.toString() + "," +
+                            robotEventArray.get(c).eBotActionData;
+
                 }
+
                 writer.write(output + "\n");
             }
             writer.close();

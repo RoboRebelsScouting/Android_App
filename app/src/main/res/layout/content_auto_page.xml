@@ -18,6 +18,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:textAllCaps="true"
+            android:textColor="@color/orange"
+            android:layout_width="100dp"
+            android:layout_height="42.5dp"
+            android:textSize="37.5sp"
+            android:text="Autonomous"
+            android:id="@+id/mode"
+            android:layout_column="1"
+            android:layout_span="4" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
         <ImageButton
             android:layout_width="100dp"
             android:layout_height="85dp"
@@ -28,6 +44,7 @@
             android:scaleType="fitXY"/>
 
         <Button
+            android:textSize="20sp"
             android:textAllCaps="false"
             android:layout_width="100dp"
             android:layout_height="85dp"
@@ -47,7 +64,8 @@
             android:tag="CrossANumber"
             android:onClick="onButton"/>
 
-        <Button
+        "<Button
+            android:textSize="20sp"
             android:textAllCaps="false"
             android:layout_width="100dp"
             android:layout_height="85dp"
@@ -67,14 +85,15 @@
             android:onClick="onButton"/>
 
         <ToggleButton
+            android:textColor="@color/red"
+            android:textColorHint="@color/darkGreen"
             android:textAllCaps="false"
             android:layout_width="100dp"
             android:layout_height="85dp"
-            android:textOn="Attempted"
-            android:textOff="No Attempt"
+            android:textOn="Approach-Yes"
+            android:textOff="Approach-No"
             android:onClick="onToggleDef"
             android:id="@+id/AttemptedA"
-            android:tag="Attempt:A"
             android:layout_column="5" />
 
 
@@ -94,6 +113,7 @@
             android:scaleType="fitXY"/>
 
         <Button
+            android:textSize="20sp"
             android:textAllCaps="false"
             android:layout_width="100dp"
             android:layout_height="85dp"
@@ -113,6 +133,7 @@
             android:onClick="onButton"/>
 
         <Button
+            android:textSize="20sp"
             android:textAllCaps="false"
             android:layout_width="100dp"
             android:layout_height="85dp"
@@ -132,15 +153,17 @@
             android:onClick="onButton"/>
 
         <ToggleButton
+            android:textColor="@color/red"
+            android:textColorHint="@color/darkGreen"
             android:textAllCaps="false"
             android:layout_width="100dp"
             android:layout_height="85dp"
-            android:textOn="Attempted"
-            android:textOff="No Attempt"
+            android:textOn="Approach-Yes"
+            android:textOff="Approach-No"
             android:onClick="onToggleDef"
             android:id="@+id/AttemptedB"
-            android:tag="Attempt:B"
             android:layout_column="5" />
+
     </TableRow>
 
     <TableRow
@@ -158,6 +181,7 @@
             android:longClickable="false" />
 
         <Button
+            android:textSize="20sp"
             android:textAllCaps="false"
             android:layout_width="100dp"
             android:layout_height="85dp"
@@ -177,6 +201,7 @@
             android:onClick="onButton"/>
 
         <Button
+            android:textSize="20sp"
             android:layout_width="100dp"
             android:textAllCaps="false"
             android:layout_height="85dp"
@@ -197,14 +222,15 @@
             android:onClick="onButton"/>
 
         <ToggleButton
+            android:textColor="@color/red"
+            android:textColorHint="@color/darkGreen"
             android:textAllCaps="false"
             android:layout_width="100dp"
             android:layout_height="85dp"
-            android:textOn="Attempted"
-            android:textOff="No Attempt"
+            android:textOn="Approach-Yes"
+            android:textOff="Approach-No"
             android:onClick="onToggleDef"
             android:id="@+id/AttemptedC"
-            android:tag="Attempt:C"
             android:layout_column="5" />
 
 
@@ -225,6 +251,7 @@
             android:scaleType="fitXY"/>
 
         <Button
+            android:textSize="20sp"
             android:textAllCaps="false"
             android:layout_width="100dp"
             android:layout_height="85dp"
@@ -244,6 +271,7 @@
             android:onClick="onButton"/>
 
         <Button
+            android:textSize="20sp"
             android:textAllCaps="false"
             android:layout_width="100dp"
             android:layout_height="85dp"
@@ -263,14 +291,15 @@
             android:onClick="onButton"/>
 
         <ToggleButton
+            android:textColor="@color/red"
+            android:textColorHint="@color/darkGreen"
             android:textAllCaps="false"
             android:layout_width="100dp"
             android:layout_height="85dp"
-            android:textOn="Attempted"
-            android:textOff="No Attempt"
+            android:textOn="Approach-Yes"
+            android:textOff="Approach-No"
             android:onClick="onToggleDef"
             android:id="@+id/AttemptedD"
-            android:tag="Attempt:D"
             android:layout_column="5" />
 
     </TableRow>
@@ -290,6 +319,7 @@
             android:scaleType="fitXY"/>
 
         <Button
+            android:textSize="20sp"
             android:textAllCaps="false"
             android:layout_width="100dp"
             android:layout_height="85dp"
@@ -310,6 +340,7 @@
             android:onClick="onButton"/>
 
         <Button
+            android:textSize="20sp"
             android:textAllCaps="false"
             android:layout_width="100dp"
             android:layout_height="85dp"
@@ -330,14 +361,16 @@
             android:tag="LowBar:Fail" />
 
         <ToggleButton
+            android:textColor="@color/red"
+            android:textColorHint="@color/darkGreen"
             android:textAllCaps="false"
             android:layout_width="100dp"
             android:layout_height="85dp"
-            android:textOn="Attempted"
-            android:textOff="No Attempt"
+            android:textOn="Approach-Yes"
+            android:textOff="Approach-No"
             android:onClick="onToggleDef"
             android:id="@+id/AttemptedLowBar"
-            android:tag="LowBar:Attempt"
+            android:tag="LowBar:Approach"
             android:layout_column="5" />
 
     </TableRow>
@@ -350,7 +383,6 @@
             android:textAllCaps="false"
             android:layout_width="100dp"
             android:layout_height="25dp"
-            android:text=""
             android:id="@+id/textView"
             android:layout_column="0" />
 
@@ -360,21 +392,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageButton
+            android:src="@drawable/boulder"
+            android:adjustViewBounds="false"
+            android:cropToPadding="false"
+            android:scaleType="fitXY"
+            android:layout_width="100dp"
+            android:layout_height="85dp"
+            android:id="@+id/ball"
+            android:layout_column="0" />
+
         <Button
             android:textAllCaps="false"
             android:layout_width="100dp"
             android:layout_height="85dp"
-            android:text="Ball"
-            android:id="@+id/ball"
-            android:layout_column="0" />
-
-        <ImageButton
-            android:layout_width="100dp"
-            android:layout_height="85dp"
-            android:src="@drawable/boulder_pick_up"
-            android:id="@+id/pickUpImage"
-            android:adjustViewBounds="false"
-            android:cropToPadding="false"
+            android:text="Pick Up Ball"
+            android:id="@+id/pickUpBall"
             android:scaleType="fitXY"
             android:layout_column="1"
             android:tag="Ball:PickUp"
@@ -390,14 +423,12 @@
             android:tag="Ball:PickUp"
             android:onClick="onButton"/>
 
-        <ImageButton
+        <Button
             android:layout_width="100dp"
             android:layout_height="85dp"
-            android:src="@drawable/boulder_put_down"
-            android:id="@+id/dropImage"
-            android:adjustViewBounds="false"
-            android:cropToPadding="false"
-            android:scaleType="fitXY"
+            android:textAllCaps="false"
+            android:text="Drop Ball"
+            android:id="@+id/dropBall"
             android:layout_column="3"
             android:tag="Ball:Drop"
             android:onClick="onNonDefense"/>
@@ -419,22 +450,22 @@
         android:layout_height="match_parent">
 
 
+        <ImageButton
+            android:adjustViewBounds="false"
+            android:cropToPadding="false"
+            android:scaleType="fitXY"
+            android:layout_width="100dp"
+            android:layout_height="85dp"
+            android:id="@+id/HighScoreButton"
+            android:src="@drawable/castle_high"
+            android:layout_column="0" />
+
         <Button
             android:textAllCaps="false"
             android:layout_width="100dp"
             android:layout_height="85dp"
-            android:text="High Goal"
-            android:id="@+id/HighScoreButton"
-            android:layout_column="0" />
-
-        <ImageButton
-            android:layout_width="100dp"
-            android:layout_height="85dp"
-            android:src="@drawable/castle_high_goal"
-            android:id="@+id/ScoreHighImage"
-            android:adjustViewBounds="false"
-            android:cropToPadding="false"
-            android:scaleType="fitXY"
+            android:text="Score High"
+            android:id="@+id/ScoreHighGoal"
             android:layout_column="1"
             android:tag="ShootHigh:Score"
             android:onClick="onNonDefense"/>
@@ -449,14 +480,12 @@
             android:tag="ShootHigh:Score"
             android:onClick="onButton"/>
 
-        <ImageButton
+        <Button
+            android:textAllCaps="false"
+            android:text="High Miss"
             android:layout_width="100dp"
             android:layout_height="85dp"
-            android:id="@+id/missHighImage"
-            android:src="@drawable/castle_missed"
-            android:adjustViewBounds="false"
-            android:cropToPadding="false"
-            android:scaleType="fitXY"
+            android:id="@+id/missHighGoal"
             android:layout_column="3"
             android:tag="ShootHigh:Miss"
             android:onClick="onNonDefense"/>
@@ -480,7 +509,8 @@
             android:id="@+id/teleopButton"
             android:onClick="goTeleopOrCapture"
             android:textOn="To Capture"
-            android:layout_column="5" />
+            android:layout_column="5"
+            android:background="@color/green"/>
     </TableRow>
 
     <TableRow
@@ -488,22 +518,24 @@
         android:layout_height="match_parent">
 
 
+        <ImageButton
+            android:adjustViewBounds="false"
+            android:cropToPadding="false"
+            android:scaleType="fitXY"
+            android:src="@drawable/castle_low"
+            android:layout_width="100dp"
+            android:layout_height="85dp"
+            android:id="@+id/LowScoreButton"
+            android:layout_column="0" />
+
         <Button
             android:textAllCaps="false"
             android:layout_width="100dp"
             android:layout_height="85dp"
-            android:text="Low Goal"
-            android:id="@+id/LowScoreButton"
-            android:layout_column="0" />
-
-        <ImageButton
-            android:layout_width="100dp"
-            android:layout_height="85dp"
-            android:src="@drawable/castle_low_goal"
-            android:id="@+id/ScoreLowImage"
+            android:text="Score Low"
+            android:id="@+id/ScoreLowGoal"
             android:adjustViewBounds="false"
             android:cropToPadding="false"
-            android:scaleType="fitXY"
             android:layout_column="1"
             android:tag="ShootLow:Score"
             android:onClick="onNonDefense"/>
@@ -518,14 +550,12 @@
             android:tag="ShootLow:Score"
             android:onClick="onButton"/>
 
-        <ImageButton
+        <Button
             android:layout_width="100dp"
             android:layout_height="85dp"
-            android:id="@+id/missLowImage"
-            android:src="@drawable/castle_low_missed"
-            android:adjustViewBounds="false"
-            android:cropToPadding="false"
-            android:scaleType="fitXY"
+            android:id="@+id/missLowGoal"
+            android:text="Low Miss"
+            android:textAllCaps="false"
             android:layout_column="3"
             android:tag="ShootLow:Miss"
             android:onClick="onNonDefense"/>

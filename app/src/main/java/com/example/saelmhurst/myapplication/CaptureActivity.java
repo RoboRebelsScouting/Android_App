@@ -72,11 +72,19 @@ public class CaptureActivity extends AppCompatActivity {
             botEvent.robotActionTime = Integer.parseInt(penaltyOther.getText().toString());
         }
 
+        EditText totalScoreEdit = (EditText) findViewById(R.id.TotalScoreEdit);
+        FirstScouting.gameInfoStorage.infoHeader.allianceTotalScore = totalScoreEdit.getText().toString();
+
         if (FirstScouting.gameInfoStorage.isExternalStorageWritable()) {
             FirstScouting.gameInfoStorage.csvCreate();
         }
+
         Intent intent = new Intent(this, MainActivity.class);
+        String eventNameInfo = FirstScouting.gameInfoStorage.infoHeader.eventNameInfo;
+        String scoutNameInfo = FirstScouting.gameInfoStorage.infoHeader.scoutNameInfo;
         FirstScouting.gameInfoStorage.Reset();
+        FirstScouting.gameInfoStorage.infoHeader.eventNameInfo = eventNameInfo;
+        FirstScouting.gameInfoStorage.infoHeader.scoutNameInfo = scoutNameInfo;
         startActivity(intent);
     }
 }

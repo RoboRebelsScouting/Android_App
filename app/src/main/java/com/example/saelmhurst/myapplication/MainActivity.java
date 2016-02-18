@@ -1,5 +1,6 @@
 package com.example.saelmhurst.myapplication;
 
+import android.graphics.LightingColorFilter;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
@@ -29,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        ToggleButton toggleButton = (ToggleButton) findViewById(R.id.allianceToggle);
+        toggleButton.getBackground().setColorFilter(new LightingColorFilter(0xFF0000FF, 0xFF0000FF));
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,6 +41,14 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("", null).show();
             }
         });
+        EditText eventTextEdit = (EditText) findViewById(R.id.eventText);
+        EditText scoutTextEdit = (EditText) findViewById(R.id.scoutText);
+        if (!FirstScouting.gameInfoStorage.infoHeader.eventNameInfo.equals("")) {
+            eventTextEdit.setHint(FirstScouting.gameInfoStorage.infoHeader.eventNameInfo);
+        }
+        if (!FirstScouting.gameInfoStorage.infoHeader.scoutNameInfo.equals("")) {
+            scoutTextEdit.setHint(FirstScouting.gameInfoStorage.infoHeader.scoutNameInfo);
+        }
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -60,21 +72,38 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void onAllianceToggle(View view) {
+        ToggleButton toggleButton = (ToggleButton) findViewById(R.id.allianceToggle);
+        if (toggleButton.isChecked()) {
+            //RED
+            toggleButton.getBackground().setColorFilter(new LightingColorFilter(0xFFFF0000,0xFFFF0000));
+        } else {
+            //BLUE
+            toggleButton.getBackground().setColorFilter(new LightingColorFilter(0xFF0000FF, 0xFF0000FF));
+        }
+    }
+
     public void saveInfoGoNext(View view) {
         //FirstScouting.gameInfoStorage.Reset();
 
         long startTime = Calendar.getInstance().getTimeInMillis();
         EditText eventTextEdit = (EditText) findViewById(R.id.eventText);
-        String eventTextString = eventTextEdit.getText().toString();
+        String eventTextString = eventTextEdit.getText().toString().trim();
+        if (eventTextEdit.getText().toString().equals(null)) {
+            eventTextString = FirstScouting.gameInfoStorage.infoHeader.eventNameInfo;
+        }
         EditText matchTextEdit = (EditText) findViewById(R.id.matchText);
-        String matchTextString = matchTextEdit.getText().toString();
+        String matchTextString = matchTextEdit.getText().toString().trim();
         EditText botTextEdit = (EditText) findViewById(R.id.botText);
-        String botTextString = botTextEdit.getText().toString();
+        String botTextString = botTextEdit.getText().toString().trim();
         EditText scoutTextEdit = (EditText) findViewById(R.id.scoutText);
-        String scoutTextString = scoutTextEdit.getText().toString();
+        String scoutTextString = scoutTextEdit.getText().toString().trim();
+        if (scoutTextEdit.getText().toString().equals(null)) {
+            scoutTextString = FirstScouting.gameInfoStorage.infoHeader.scoutNameInfo;
+        }
         ToggleButton allianceToggle = (ToggleButton) findViewById(R.id.allianceToggle);
         String allianceTextString;
-        if (allianceToggle.isChecked() == true) {
+        if (allianceToggle.isChecked()) {
             allianceTextString = "red";
         } else {
             allianceTextString = "blue";
