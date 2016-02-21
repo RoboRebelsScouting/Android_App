@@ -8,7 +8,7 @@
     <application
         android:name=".FirstScouting"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/roborebels"
         android:label="RoboRebels Scouting"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">

@@ -8,6 +8,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class DefenseSelection extends AppCompatActivity {
@@ -35,7 +37,6 @@ public class DefenseSelection extends AppCompatActivity {
     public void goAuto(View view) {
 
 
-
         ToggleButton toggle = null;
         String[] toggleArray = null;
         for (int c = 0; c < FirstScouting.gameInfoStorage.defenses.length; c++) {
@@ -45,10 +46,10 @@ public class DefenseSelection extends AppCompatActivity {
             } else if (c == 1) {
                 toggle = (ToggleButton) findViewById(R.id.toggleB);
                 toggleArray = toggle.getTag().toString().split(":");
-            }  else if (c == 2) {
-                 toggle = (ToggleButton) findViewById(R.id.toggleC);
-               toggleArray = toggle.getTag().toString().split(":");
-            }  else if (c == 3) {
+            } else if (c == 2) {
+                toggle = (ToggleButton) findViewById(R.id.toggleC);
+                toggleArray = toggle.getTag().toString().split(":");
+            } else if (c == 3) {
                 toggle = (ToggleButton) findViewById(R.id.toggleD);
                 toggleArray = toggle.getTag().toString().split(":");
             }
@@ -64,4 +65,46 @@ public class DefenseSelection extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void changeToggleImage(View view) {
+        ToggleButton tog = (ToggleButton) view;
+        String[] togArray = tog.getText().toString().split(":");
+        String[] tagTog = tog.getTag().toString().split(":");
+        String neededTagTogString;
+
+        ImageButton dFence;
+
+        if (togArray[0].equals("A")) {
+             dFence = (ImageButton) findViewById(R.id.imageA);
+
+        } else if (togArray[0].equals("B")) {
+             dFence = (ImageButton) findViewById(R.id.imageB);
+
+        } else if (togArray[0].equals("C")) {
+             dFence = (ImageButton) findViewById(R.id.imageC);
+
+        } else {
+             dFence = (ImageButton) findViewById(R.id.imageD);
+
+        }
+
+        if (tog.isChecked()) {
+            neededTagTogString = tagTog[1];
+        } else {
+            neededTagTogString = tagTog[0];
+        }
+
+        setImageToggle(neededTagTogString.trim(),dFence);
+    }
+
+    public void setImageToggle(String defense, ImageButton imageButton) {
+        String[] splitOnSpace = defense.split(" ");
+        if (splitOnSpace.length == 2) {
+            defense = splitOnSpace[0] + splitOnSpace[1];
+        }
+
+        String pngString = defense.toLowerCase();
+        int defenseResID = getResources().getIdentifier(pngString, "drawable", getApplicationContext().getPackageName());
+        imageButton.setImageResource(defenseResID);
+
+    }
 }

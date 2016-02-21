@@ -11,7 +11,9 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 import com.example.saelmhurst.myapplication.FirstScouting;
 import java.io.Serializable;
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("", null).show();
             }
         });
+
         EditText eventTextEdit = (EditText) findViewById(R.id.eventText);
         EditText scoutTextEdit = (EditText) findViewById(R.id.scoutText);
         if (!FirstScouting.gameInfoStorage.infoHeader.eventNameInfo.equals("")) {
@@ -83,23 +86,63 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void changeMatchType(View view) {
+        Button btn = (Button) view;
+        String[] possibleOutputArray = "QM,QF,SF,F".split(",");
+
+        for (int c = 0; c <= possibleOutputArray.length; c++) {
+            if (c < possibleOutputArray.length) {
+                if (btn.getText().toString().equals(possibleOutputArray[c])) {
+                    btn.setText(possibleOutputArray[++c]);
+                } else if (btn.getText().equals(possibleOutputArray[3])) {
+                    btn.setText(possibleOutputArray[0]);
+
+                }
+            }
+        }
+    }
+
     public void saveInfoGoNext(View view) {
         //FirstScouting.gameInfoStorage.Reset();
+
+        Boolean allDataIn = true;
 
         long startTime = Calendar.getInstance().getTimeInMillis();
         EditText eventTextEdit = (EditText) findViewById(R.id.eventText);
         String eventTextString = eventTextEdit.getText().toString().trim();
-        if (eventTextEdit.getText().toString().equals(null)) {
+        if (eventTextEdit.getText().toString().equals("")) {
             eventTextString = FirstScouting.gameInfoStorage.infoHeader.eventNameInfo;
+            if (eventTextString.equals("")) {
+                Toast.makeText(getApplicationContext(), "Enter an Event", Toast.LENGTH_LONG).show();
+                allDataIn = false;
+            }
         }
+
+        String matchTextString = "";
         EditText matchTextEdit = (EditText) findViewById(R.id.matchText);
-        String matchTextString = matchTextEdit.getText().toString().trim();
+        Button matchTypeButton = (Button) findViewById(R.id.matchType);
+        if (matchTextEdit.getText().equals("")) {
+            matchTextString = matchTextEdit.getText().toString().trim() + matchTypeButton.getText();
+            allDataIn = false;
+        }
+
         EditText botTextEdit = (EditText) findViewById(R.id.botText);
-        String botTextString = botTextEdit.getText().toString().trim();
+        String botTextString = "";
+        if (!botTextEdit.getText().toString().trim().equals("")) {
+            botTextString = botTextEdit.getText().toString().trim();
+        } else {
+            Toast.makeText(getApplicationContext(), "Enter Bot Number", Toast.LENGTH_LONG).show();
+            allDataIn = false;
+        }
+
         EditText scoutTextEdit = (EditText) findViewById(R.id.scoutText);
         String scoutTextString = scoutTextEdit.getText().toString().trim();
-        if (scoutTextEdit.getText().toString().equals(null)) {
+        if (scoutTextEdit.getText().toString().equals("")) {
             scoutTextString = FirstScouting.gameInfoStorage.infoHeader.scoutNameInfo;
+            if (scoutTextString.equals("")) {
+                Toast.makeText(getApplicationContext(), "Type Your Name In", Toast.LENGTH_LONG).show();
+                allDataIn = false;
+            }
         }
         ToggleButton allianceToggle = (ToggleButton) findViewById(R.id.allianceToggle);
         String allianceTextString;
@@ -108,8 +151,11 @@ public class MainActivity extends AppCompatActivity {
         } else {
             allianceTextString = "blue";
         }
-        FirstScouting.gameInfoStorage.setHeader(eventTextString, matchTextString, botTextString, allianceTextString, scoutTextString, startTime);
-        Intent intent = new Intent(this, DefenseSelection.class);
-        startActivity(intent);
+
+        if (allDataIn) {
+            FirstScouting.gameInfoStorage.setHeader(eventTextString, matchTextString, botTextString, allianceTextString, scoutTextString, startTime);
+            Intent intent = new Intent(this, DefenseSelection.class);
+            startActivity(intent);
+        }
     }
 }

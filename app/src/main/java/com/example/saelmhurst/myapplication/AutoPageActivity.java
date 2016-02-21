@@ -121,7 +121,7 @@ public class AutoPageActivity extends AppCompatActivity {
                         if (!removed) {
                             FirstScouting.gameInfoStorage.robotEventArray.remove(a);
                             removed = true;
-                            if (arrayTags[1].equalsIgnoreCase("Approach") == false) {
+                            if (!arrayTags[1].equalsIgnoreCase("Approach")) {
                                 Button button = (Button) btn;
                                 String buttonText = button.getText().toString();
                                 String[] array = buttonText.split(":");

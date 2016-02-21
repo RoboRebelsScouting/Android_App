@@ -1,6 +1,8 @@
 package com.example.saelmhurst.myapplication;
 import android.os.Environment;
+import android.text.format.Time;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -38,10 +40,9 @@ import java.util.Hashtable;
         Challenge,
         NoEvent,
         Ball,
-        Drive,
+        DefensiveMove,
         Climb,
         Penalty,
-        TechFoul,
         EnterTeleop,
         ShootLow,
         ShootHigh,
@@ -166,23 +167,27 @@ public class InfoStorage implements Serializable
         return file;
     }
     void csvCreate() {
-        String fileName= infoHeader.eventNameInfo + "-" +
-                infoHeader.matchNumberInfo + "-" +
-                infoHeader.allianceColorInfo + "-" +
-                infoHeader.botNumberInfo + "-" +
+        String fileName= infoHeader.eventNameInfo.trim() + "-" +
+                infoHeader.matchNumberInfo.trim() + "-" +
+                infoHeader.allianceColorInfo.trim() + "-" +
+                infoHeader.botNumberInfo.trim() + "-" +
                 ".csv";
 
         File directory = getAlbumStorageDir("/FRC2016");
         File file = new File(directory,fileName);
         try {
             FileWriter writer = new FileWriter(file);
-            String lineOne = infoHeader.eventNameInfo + "," +
-                    infoHeader.matchNumberInfo + "," +
-                    infoHeader.allianceColorInfo + "," +
-                    infoHeader.botNumberInfo + "," +
-                    infoHeader.scoutNameInfo + "," +
-                    infoHeader.allianceTotalScore;
+            String lineOne = infoHeader.eventNameInfo.trim() + "," +
+                    infoHeader.matchNumberInfo.trim() + "," +
+                    infoHeader.allianceColorInfo.trim() + "," +
+                    infoHeader.botNumberInfo.trim() + "," +
+                    infoHeader.scoutNameInfo.trim() + "," +
+                    infoHeader.allianceTotalScore.trim();
+
+
             writer.write(lineOne + "\n");
+
+
             for (int c = 0; c < robotEventArray.size(); c++) {
                 String output = "";
                 Format format = new SimpleDateFormat("yyyy-MM-dd-HH:mm;ss");
@@ -195,7 +200,7 @@ public class InfoStorage implements Serializable
                         || (robotEventArray.get(c).equals(enumBotAction.RockWall))
                         || (robotEventArray.get(c).equals(enumBotAction.Moat))
                         || (robotEventArray.get(c).equals(enumBotAction.SallyPort))
-                        || (robotEventArray.get(c).equals(equals(enumBotAction.Portcullis)))){
+                        || (robotEventArray.get(c).equals(enumBotAction.Portcullis))) {
 
                     Date date = new Date(robotEventArray.get(c).robotActionTime);
 
@@ -227,6 +232,24 @@ public class InfoStorage implements Serializable
             writer.close();
         } catch (IOException e) {
             Log.e("ERROR","File NOT Created",e);
+        }
+    }
+
+    public void correctCurrentEvent() {
+        long time = System.currentTimeMillis();
+        Format format = new SimpleDateFormat("yyyy-MM-dd-HH:mm;ss");
+        String dateString = format.format(time);
+        String[] yearMonthDayHour = dateString.split("-");
+        if (yearMonthDayHour[1].equals("03")) {
+            if ((Integer.parseInt(yearMonthDayHour[2]) > 14) && (Integer.parseInt(yearMonthDayHour[2]) < 10)) {
+                infoHeader.eventNameInfo = "2016mawor";
+            } else if ((Integer.parseInt(yearMonthDayHour[2]) > 27) && (Integer.parseInt(yearMonthDayHour[2]) < 23)) {
+                infoHeader.eventNameInfo = "2016nhdur";
+            }
+        } else if (yearMonthDayHour[1].equals("04")) {
+            if ((Integer.parseInt(yearMonthDayHour[2]) > 17) && (Integer.parseInt(yearMonthDayHour[2]) < 12)) {
+                infoHeader.eventNameInfo = "2016necmp";
+            }
         }
     }
 }

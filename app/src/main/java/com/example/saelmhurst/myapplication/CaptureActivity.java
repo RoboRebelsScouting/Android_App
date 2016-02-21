@@ -52,22 +52,22 @@ public class CaptureActivity extends AppCompatActivity {
 
         botEvent.eBotAction = enumBotAction.Penalty;
 
-        if (penaltyDefensive.getText().toString().equals(null)) {
+        if (!penaltyDefensive.getText().toString().equals("")) {
             botEvent.eBotActionData = enumBotActionData.Defensive;
             botEvent.robotActionTime = Integer.parseInt(penaltyDefensive.getText().toString());
         }
 
-        if (penaltyPassage.getText().toString().equals(null)) {
+        if (!penaltyPassage.getText().toString().equals("")) {
             botEvent.eBotActionData = enumBotActionData.Passage;
             botEvent.robotActionTime = Integer.parseInt(penaltyPassage.getText().toString());
         }
 
-        if (penaltyPinning.getText().toString().equals(null)) {
+        if (!penaltyPinning.getText().toString().equals("")) {
             botEvent.eBotActionData = enumBotActionData.Pinning;
             botEvent.robotActionTime = Integer.parseInt(penaltyPinning.getText().toString());
         }
 
-        if (penaltyOther.getText().toString().equals(null)) {
+        if (!penaltyOther.getText().toString().equals("")) {
             botEvent.eBotActionData = enumBotActionData.Other;
             botEvent.robotActionTime = Integer.parseInt(penaltyOther.getText().toString());
         }
@@ -76,6 +76,7 @@ public class CaptureActivity extends AppCompatActivity {
         FirstScouting.gameInfoStorage.infoHeader.allianceTotalScore = totalScoreEdit.getText().toString();
 
         if (FirstScouting.gameInfoStorage.isExternalStorageWritable()) {
+            FirstScouting.gameInfoStorage.correctCurrentEvent();
             FirstScouting.gameInfoStorage.csvCreate();
         }
 

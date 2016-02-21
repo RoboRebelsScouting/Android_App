@@ -21,6 +21,7 @@
             android:layout_column="0" />
 
         <EditText
+            android:inputType="textPersonName"
             android:layout_width="200dp"
             android:layout_height="100dp"
             android:id="@+id/scoutText"
@@ -41,6 +42,7 @@
             android:layout_column="0" />
 
         <EditText
+            android:inputType="textPersonName"
             android:layout_width="200dp"
             android:layout_height="100dp"
             android:id="@+id/eventText"
@@ -84,11 +86,21 @@
             android:layout_column="0" />
 
         <EditText
+            android:inputType="number"
             android:layout_width="200dp"
             android:layout_height="100dp"
             android:id="@+id/matchText"
             android:hint="Enter Match #"
             android:layout_column="1" />
+
+        <Button
+            android:textAllCaps="false"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:text="QM"
+            android:id="@+id/matchType"
+            android:layout_column="2"
+            android:onClick="changeMatchType"/>
 
     </TableRow>
 

@@ -15,7 +15,23 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:layout_width="200dp"
+            android:textAllCaps="true"
+            android:textColor="@color/orange"
+            android:layout_width="100dp"
+            android:layout_height="42.5dp"
+            android:textSize="37.5sp"
+            android:text="Defenses"
+            android:id="@+id/mode"
+            android:layout_column="1"
+            android:layout_span="4" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="130dp"
             android:id="@+id/invi"
             android:layout_column="0" />
 
@@ -27,7 +43,18 @@
             android:textOff="A: Cheval"
             android:id="@+id/toggleA"
             android:layout_column="1"
-            android:tag="Cheval:Portcullis"/>
+            android:tag="Cheval:Portcullis"
+            android:onClick="changeToggleImage"/>
+
+        <ImageButton
+            android:layout_width="125dp"
+            android:layout_height="100dp"
+            android:id="@+id/imageA"
+            android:adjustViewBounds="false"
+            android:cropToPadding="false"
+            android:scaleType="fitXY"
+            android:src="@drawable/cheval"
+            android:layout_column="2" />
     </TableRow>
 
     <TableRow
@@ -35,6 +62,7 @@
         android:layout_height="match_parent">
 
         <ToggleButton
+            android:onClick="changeToggleImage"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:textAllCaps="false"
@@ -43,6 +71,16 @@
             android:id="@+id/toggleB"
             android:layout_column="1"
             android:tag="Ramparts:Moat"/>
+
+        <ImageButton
+            android:layout_width="125dp"
+            android:layout_height="100dp"
+            android:id="@+id/imageB"
+            android:adjustViewBounds="false"
+            android:cropToPadding="false"
+            android:scaleType="fitXY"
+            android:src="@drawable/ramparts"
+            android:layout_column="2" />
     </TableRow>
 
     <TableRow
@@ -50,6 +88,7 @@
         android:layout_height="match_parent">
 
         <ToggleButton
+            android:onClick="changeToggleImage"
             android:textAllCaps="false"
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -59,6 +98,16 @@
             android:layout_column="1"
             android:longClickable="false"
             android:tag="SallyPort:Drawbridge"/>
+
+        <ImageButton
+            android:layout_width="125dp"
+            android:layout_height="100dp"
+            android:id="@+id/imageC"
+            android:adjustViewBounds="false"
+            android:cropToPadding="false"
+            android:scaleType="fitXY"
+            android:src="@drawable/sallyport"
+            android:layout_column="2" />
     </TableRow>
 
     <TableRow
@@ -66,6 +115,7 @@
         android:layout_height="match_parent">
 
         <ToggleButton
+            android:onClick="changeToggleImage"
             android:textAllCaps="false"
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -75,6 +125,16 @@
             android:layout_column="1"
             android:checked="false"
             android:tag="RoughTerrain:RockWall"/>
+
+        <ImageButton
+            android:layout_width="125dp"
+            android:layout_height="100dp"
+            android:id="@+id/imageD"
+            android:adjustViewBounds="false"
+            android:cropToPadding="false"
+            android:scaleType="fitXY"
+            android:src="@drawable/roughterrain"
+            android:layout_column="2" />
     </TableRow>
 
     <TableRow
@@ -86,6 +146,20 @@
             android:layout_height="50dp"
             android:id="@+id/invis"
             android:layout_column="1" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="45dp"
+            android:textSize="20sp"
+            android:text="WARNING THIS STARTS A TIMER:"
+            android:id="@+id/Warning"
+            android:layout_column="1"
+            android:layout_span="2" />
     </TableRow>
 
     <TableRow
