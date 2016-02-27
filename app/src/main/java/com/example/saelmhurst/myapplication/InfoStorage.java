@@ -124,7 +124,6 @@ public class InfoStorage implements Serializable
 
     Hashtable<enumBotAction, String> ht_BotActions = new Hashtable<>();
 
-
     Integer index;
 
     InfoStorage() {

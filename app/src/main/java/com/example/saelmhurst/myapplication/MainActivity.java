@@ -121,8 +121,8 @@ public class MainActivity extends AppCompatActivity {
         String matchTextString = "";
         EditText matchTextEdit = (EditText) findViewById(R.id.matchText);
         Button matchTypeButton = (Button) findViewById(R.id.matchType);
+        matchTextString =  matchTypeButton.getText().toString() + matchTextEdit.getText().toString().trim();
         if (matchTextEdit.getText().equals("")) {
-            matchTextString = matchTextEdit.getText().toString().trim() + matchTypeButton.getText();
             allDataIn = false;
         }
 
