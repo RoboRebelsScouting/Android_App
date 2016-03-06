@@ -105,7 +105,7 @@ public class AutoPageActivity extends AppCompatActivity {
         String strTag = view.getTag().toString();
         String[] arrayTags = strTag.split(":");
 
-        if (arrayTags[1].equalsIgnoreCase("Approach")) {
+        if ((arrayTags[1].equalsIgnoreCase("Approach")) || (view == findViewById(R.id.brokenToggle)) ) {
             btn = (ToggleButton) view;
         } else {
             btn = (Button) view;
@@ -133,6 +133,20 @@ public class AutoPageActivity extends AppCompatActivity {
                     }
                 }
             }
+        }
+    }
+
+    public void onBroken(View view) {
+        ToggleButton tView = (ToggleButton)view;
+        RobotEvent botEvent = new RobotEvent();
+        if (tView.isChecked()) {
+            botEvent.robotActionTime = System.currentTimeMillis();
+            botEvent.eBotAction = enumBotAction.Brake;
+            botEvent.eBotActionData = enumBotActionData.None;
+        } else {
+            botEvent.robotActionTime = System.currentTimeMillis();
+            botEvent.eBotAction = enumBotAction.UnBrake;
+            botEvent.eBotActionData = enumBotActionData.None;
         }
     }
 

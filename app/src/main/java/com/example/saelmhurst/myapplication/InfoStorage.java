@@ -1,4 +1,8 @@
 package com.example.saelmhurst.myapplication;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Environment;
 import android.text.format.Time;
 import android.util.Log;
@@ -54,6 +58,8 @@ import java.util.Hashtable;
         SallyPort,
         RockWall,
         RoughTerrain,
+        Brake,
+        UnBrake,
         LowBar,
         Ramparts
     }
@@ -165,7 +171,8 @@ public class InfoStorage implements Serializable
         }
         return file;
     }
-    void csvCreate() {
+
+    void csvCreate(Activity theActivity) {
         String fileName= infoHeader.eventNameInfo.trim() + "-" +
                 infoHeader.matchNumberInfo.trim() + "-" +
                 infoHeader.allianceColorInfo.trim() + "-" +
@@ -208,9 +215,11 @@ public class InfoStorage implements Serializable
                             robotEventArray.get(c).eBotAction.toString() + "," +
                             robotEventArray.get(c).eBotActionData;
 
-                } else if (robotEventArray.get(c).equals(enumBotAction.Penalty)) {
+                } else if (robotEventArray.get(c).eBotAction.equals(enumBotAction.Penalty)) {
 
-                    Date date = new Date(Calendar.getInstance().getTimeInMillis());
+                    long time = System.currentTimeMillis();
+
+                    Date date = new Date(time);
 
                     output =  format.format(date) + "," +
                             robotEventArray.get(c).robotActionTime + "," +
@@ -229,6 +238,11 @@ public class InfoStorage implements Serializable
                 writer.write(output + "\n");
             }
             writer.close();
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
+            theActivity.startActivityForResult(intent,0);
         } catch (IOException e) {
             Log.e("ERROR","File NOT Created",e);
         }

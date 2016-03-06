@@ -27,6 +27,14 @@
             android:id="@+id/scoutText"
             android:hint="Enter Scout Name"
             android:layout_column="1" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="Version 6.4"
+            android:textSize="20sp"
+            android:id="@+id/Version"
+            android:layout_column="3" />
     </TableRow>
 
     <TableRow

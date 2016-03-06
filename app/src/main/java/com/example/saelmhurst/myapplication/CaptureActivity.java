@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class CaptureActivity extends AppCompatActivity {
@@ -20,10 +21,7 @@ public class CaptureActivity extends AppCompatActivity {
         ToggleButton challenge = (ToggleButton) findViewById(R.id.Challenge);
         ToggleButton climb = (ToggleButton) findViewById(R.id.Climb);
 
-        EditText penaltyPinning = (EditText) findViewById(R.id.PinningPenalty);
-        EditText penaltyPassage = (EditText) findViewById(R.id.PassagePenalty);
-        EditText penaltyDefensive = (EditText) findViewById(R.id.DefensivePenalty);
-        EditText penaltyOther = (EditText) findViewById(R.id.OtherPenalty);
+        EditText penaltyPoints = (EditText) findViewById(R.id.PenaltyPoints);
 
         RobotEvent botEvent = new RobotEvent();
         if (challenge.isChecked()) {
@@ -38,6 +36,7 @@ public class CaptureActivity extends AppCompatActivity {
             FirstScouting.gameInfoStorage.robotEventArray.add(botEvent);
         }
 
+        botEvent = new RobotEvent();
         if (climb.isChecked()) {
             botEvent.eBotActionData = enumBotActionData.Succeed;
             botEvent.eBotAction = enumBotAction.Climb;
@@ -50,26 +49,13 @@ public class CaptureActivity extends AppCompatActivity {
             FirstScouting.gameInfoStorage.robotEventArray.add(botEvent);
         }
 
-        botEvent.eBotAction = enumBotAction.Penalty;
 
-        if (!penaltyDefensive.getText().toString().equals("")) {
-            botEvent.eBotActionData = enumBotActionData.Defensive;
-            botEvent.robotActionTime = Integer.parseInt(penaltyDefensive.getText().toString());
-        }
-
-        if (!penaltyPassage.getText().toString().equals("")) {
-            botEvent.eBotActionData = enumBotActionData.Passage;
-            botEvent.robotActionTime = Integer.parseInt(penaltyPassage.getText().toString());
-        }
-
-        if (!penaltyPinning.getText().toString().equals("")) {
-            botEvent.eBotActionData = enumBotActionData.Pinning;
-            botEvent.robotActionTime = Integer.parseInt(penaltyPinning.getText().toString());
-        }
-
-        if (!penaltyOther.getText().toString().equals("")) {
-            botEvent.eBotActionData = enumBotActionData.Other;
-            botEvent.robotActionTime = Integer.parseInt(penaltyOther.getText().toString());
+        if (!penaltyPoints.getText().toString().equals("")) {
+            botEvent = new RobotEvent();
+            botEvent.eBotAction = enumBotAction.Penalty;
+            botEvent.eBotActionData = enumBotActionData.None;
+            botEvent.robotActionTime = Integer.parseInt(penaltyPoints.getText().toString());
+            FirstScouting.gameInfoStorage.robotEventArray.add(botEvent);
         }
 
         EditText totalScoreEdit = (EditText) findViewById(R.id.TotalScoreEdit);
@@ -77,15 +63,24 @@ public class CaptureActivity extends AppCompatActivity {
 
         if (FirstScouting.gameInfoStorage.isExternalStorageWritable()) {
             FirstScouting.gameInfoStorage.correctCurrentEvent();
-            FirstScouting.gameInfoStorage.csvCreate();
+            if (!FirstScouting.gameInfoStorage.infoHeader.allianceTotalScore.equals("")) {
+                FirstScouting.gameInfoStorage.csvCreate(this);
+            } else {
+                Toast.makeText(getApplicationContext(), "Put in Allied Total Score", Toast.LENGTH_LONG).show();
+            }
         }
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Intent intent = new Intent(this, MainActivity.class);
         String eventNameInfo = FirstScouting.gameInfoStorage.infoHeader.eventNameInfo;
         String scoutNameInfo = FirstScouting.gameInfoStorage.infoHeader.scoutNameInfo;
         FirstScouting.gameInfoStorage.Reset();
         FirstScouting.gameInfoStorage.infoHeader.eventNameInfo = eventNameInfo;
         FirstScouting.gameInfoStorage.infoHeader.scoutNameInfo = scoutNameInfo;
-        startActivity(intent);
+        if (!FirstScouting.gameInfoStorage.infoHeader.allianceTotalScore.equals("")) {
+            startActivity(intent);
+        }
     }
 }
